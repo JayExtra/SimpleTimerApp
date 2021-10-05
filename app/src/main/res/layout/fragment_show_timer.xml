@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.ui.fragments.ShowTimerFragment">
+
+    <Button
+        android:id="@+id/deleteTimeButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="delete"
+        android:textColor="@color/haven_purple"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/saveTimeButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pauseStartFab"
+        app:strokeColor="@color/haven_purple" />
+
+    <Button
+        android:id="@+id/saveTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="@color/haven_purple"
+        android:text="save time"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/deleteTimeButton"
+        app:layout_constraintTop_toBottomOf="@+id/pauseStartFab" />
+
+    <ProgressBar
+        android:id="@+id/progressBarTimer"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:indeterminateOnly="false"
+        android:progress="0"
+        android:progressDrawable="@drawable/circle_progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerProgressBar" />
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="00 : 00 : 00 : 00"
+        android:textColor="@color/haven_purple"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarTimer"
+        app:layout_constraintEnd_toEndOf="@+id/progressBarTimer"
+        app:layout_constraintStart_toStartOf="@+id/progressBarTimer"
+        app:layout_constraintTop_toTopOf="@+id/progressBarTimer" />
+
+    <TextView
+        android:id="@+id/timerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="label"
+        android:textColor="@color/haven_purple"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBarTimer"
+        app:layout_constraintEnd_toEndOf="@+id/progressBarTimer"
+        app:layout_constraintStart_toStartOf="@+id/progressBarTimer"
+        app:layout_constraintTop_toTopOf="@+id/progressBarTimer"
+        app:layout_constraintVertical_bias="0.35000002" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/pauseStartFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:clickable="true"
+        app:backgroundTint="@color/haven_purple"
+        app:layout_constraintEnd_toEndOf="@+id/progressBarTimer"
+        app:layout_constraintStart_toStartOf="@+id/progressBarTimer"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarTimer"
+        app:srcCompat="@drawable/ic_baseline_pause"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ProgressBar
+        android:id="@+id/timerProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/haven_purple"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SimpleTimerApp</string>
+    <string name="timer_menu_text">Timer</string>
+    <string name="saved_times_menu">saved times</string>
+    <string name="search_int">search</string>
+    <string name="_1_string">1</string>
+    <string name="_2_string">2</string>
+    <string name="_3_string">3</string>
+    <string name="_4_string">4</string>
+    <string name="_5_string">5</string>
+    <string name="_6_string">6</string>
+    <string name="_7_string">7</string>
+    <string name="_8_string">8</string>
+    <string name="_9_string">9</string>
+    <string name="_0_string">0</string>
+    <string name="_00h_00m_00s">00h : 00m : 00s</string>
+    <string name="add_label_string">add label</string>
+    <string name="add_label_hint">add label</string>
+</resources>
