@@ -16,4 +16,6 @@
     <string name="_00h_00m_00s">00h : 00m : 00s</string>
     <string name="add_label_string">add label</string>
     <string name="add_label_hint">add label</string>
+    <string name="updated_timer"> %01$sh : %02$sm : %03$ss</string>
+
 </resources>
