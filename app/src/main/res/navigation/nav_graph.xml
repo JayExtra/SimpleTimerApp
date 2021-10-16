@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/setTimerFragment"
         android:name="com.dev.james.simpletimerapp.features.ui.fragments.SetTimerFragment"
-        android:label="fragment_set_timer"
-        tools:layout="@layout/fragment_set_timer" >
+        android:label="set timer"
+        tools:layout="@layout/fragment_set_timer">
         <action
             android:id="@+id/action_setTimerFragment_to_showTimerFragment"
             app:destination="@id/showTimerFragment" />
@@ -17,13 +17,13 @@
     <fragment
         android:id="@+id/showTimerFragment"
         android:name="com.dev.james.simpletimerapp.features.ui.fragments.ShowTimerFragment"
-        android:label="fragment_show_timer"
+        android:label="show timer"
         tools:layout="@layout/fragment_show_timer" />
     <fragment
         android:id="@+id/savedTimersList"
         android:name="com.dev.james.simpletimerapp.features.ui.fragments.SavedTimersList"
-        android:label="fragment_saved_timers"
-        tools:layout="@layout/fragment_saved_timers" >
+        android:label="saved times"
+        tools:layout="@layout/fragment_saved_timers">
         <action
             android:id="@+id/action_savedTimersList_to_showTimerFragment"
             app:destination="@id/showTimerFragment" />
