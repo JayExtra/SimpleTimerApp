@@ -6,193 +6,329 @@
     android:layout_height="match_parent"
     tools:context=".features.ui.fragments.SetTimerFragment">
 
-    <Button
-        android:id="@+id/button1"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/_1_string"
-        android:textColor="@color/haven_purple"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timerTextView"
-        app:strokeColor="@color/haven_purple" />
-
-    <Button
-        android:id="@+id/button2"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/_2_string"
-        android:textColor="@color/haven_purple"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@+id/timerTextView"
-        app:strokeColor="@color/haven_purple" />
-
-    <Button
-        android:id="@+id/button3"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/_3_string"
-        android:textColor="@color/haven_purple"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/timerTextView"
-        app:strokeColor="@color/haven_purple" />
-
-    <Button
-        android:id="@+id/button4"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/_4_string"
-        android:textColor="@color/haven_purple"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:strokeColor="@color/haven_purple" />
-
-    <Button
-        android:id="@+id/button5"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/_5_string"
-        android:textColor="@color/haven_purple"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toStartOf="@+id/button6"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:strokeColor="@color/haven_purple" />
-
-    <Button
-        android:id="@+id/button6"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/_6_string"
-        android:textColor="@color/haven_purple"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        app:strokeColor="@color/haven_purple" />
-
-    <Button
-        android:id="@+id/button7"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/_7_string"
-        android:textColor="@color/haven_purple"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toStartOf="@+id/button8"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
-        app:strokeColor="@color/haven_purple" />
-
-    <Button
-        android:id="@+id/button8"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/_8_string"
-        android:textColor="@color/haven_purple"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toStartOf="@+id/button9"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
-        app:strokeColor="@color/haven_purple" />
-
-    <Button
-        android:id="@+id/button9"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/_9_string"
-        android:textColor="@color/haven_purple"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button8"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
-        app:strokeColor="@color/haven_purple" />
-
-    <Button
-        android:id="@+id/button0"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/_0_string"
-        android:textColor="@color/haven_purple"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="@+id/button9"
-        app:layout_constraintStart_toStartOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/button8"
-        app:strokeColor="@color/haven_purple" />
-
-    <ImageView
-        android:id="@+id/backSpaceimage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/timerTextView"
-        app:layout_constraintTop_toTopOf="@+id/timerTextView"
-        app:srcCompat="@drawable/ic_backspace" />
-
-    <TextView
-        android:id="@+id/timerTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/_00h_00m_00s"
-        android:textSize="34sp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addTimerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <Button
+            android:id="@+id/button1"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/_1_string"
+            android:textColor="@color/haven_purple"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timerTextView"
+            app:strokeColor="@color/haven_purple" />
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/_2_string"
+            android:textColor="@color/haven_purple"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toStartOf="@+id/button3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button1"
+            app:layout_constraintTop_toBottomOf="@+id/timerTextView"
+            app:strokeColor="@color/haven_purple" />
+
+        <Button
+            android:id="@+id/button3"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/_3_string"
+            android:textColor="@color/haven_purple"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/timerTextView"
+            app:strokeColor="@color/haven_purple" />
+
+        <Button
+            android:id="@+id/button4"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/_4_string"
+            android:textColor="@color/haven_purple"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toStartOf="@+id/button5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button2"
+            app:strokeColor="@color/haven_purple" />
+
+        <Button
+            android:id="@+id/button5"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/_5_string"
+            android:textColor="@color/haven_purple"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toStartOf="@+id/button6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button4"
+            app:layout_constraintTop_toBottomOf="@+id/button2"
+            app:strokeColor="@color/haven_purple" />
+
+        <Button
+            android:id="@+id/button6"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/_6_string"
+            android:textColor="@color/haven_purple"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button5"
+            app:layout_constraintTop_toBottomOf="@+id/button3"
+            app:strokeColor="@color/haven_purple" />
+
+        <Button
+            android:id="@+id/button7"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/_7_string"
+            android:textColor="@color/haven_purple"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toStartOf="@+id/button8"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button5"
+            app:strokeColor="@color/haven_purple" />
+
+        <Button
+            android:id="@+id/button8"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/_8_string"
+            android:textColor="@color/haven_purple"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toStartOf="@+id/button9"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button7"
+            app:layout_constraintTop_toBottomOf="@+id/button5"
+            app:strokeColor="@color/haven_purple" />
+
+        <Button
+            android:id="@+id/button9"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/_9_string"
+            android:textColor="@color/haven_purple"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button8"
+            app:layout_constraintTop_toBottomOf="@+id/button5"
+            app:strokeColor="@color/haven_purple" />
+
+        <Button
+            android:id="@+id/button0"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/_0_string"
+            android:textColor="@color/haven_purple"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="@+id/button9"
+            app:layout_constraintStart_toStartOf="@+id/button7"
+            app:layout_constraintTop_toBottomOf="@+id/button8"
+            app:strokeColor="@color/haven_purple" />
+
+        <ImageView
+            android:id="@+id/backSpaceimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/timerTextView"
+            app:layout_constraintTop_toTopOf="@+id/timerTextView"
+            app:srcCompat="@drawable/ic_backspace" />
+
+        <TextView
+            android:id="@+id/timerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/_00h_00m_00s"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/startTimerFab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:clickable="true"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/startTimerFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:clickable="true"
+            android:visibility="invisible"
+            app:backgroundTint="@color/haven_purple"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_baseline_play"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/showTimerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="invisible"
-        app:backgroundTint="@color/haven_purple"
-        app:layout_constraintEnd_toEndOf="@+id/button0"
-        app:layout_constraintStart_toStartOf="@+id/button0"
-        app:layout_constraintTop_toBottomOf="@+id/button0"
-        app:srcCompat="@drawable/ic_baseline_play"
-        tools:ignore="SpeakableTextPresentCheck"
-        tools:visibility="visible" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <Button
+            android:id="@+id/deleteTimeButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="delete"
+            android:textColor="@color/haven_purple"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/pauseStartFab"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/haven_purple" />
+
+        <Button
+            android:id="@+id/saveTimeButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="save time"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/pauseStartFab" />
+
+        <Button
+            android:id="@+id/button"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="1 min"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/ic_add"
+            app:layout_constraintEnd_toEndOf="@+id/timerText"
+            app:layout_constraintStart_toStartOf="@+id/timerText"
+            app:layout_constraintTop_toBottomOf="@+id/timerText" />
+
+        <ProgressBar
+            android:id="@+id/timerProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/haven_purple"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/progressBarTimer"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:indeterminateOnly="false"
+            android:progress="0"
+            android:progressDrawable="@drawable/circle_progress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timerProgressBar" />
+
+        <TextView
+            android:id="@+id/timerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="00 : 00 : 00 : 00"
+            android:textColor="@color/haven_purple"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarTimer"
+            app:layout_constraintEnd_toEndOf="@+id/progressBarTimer"
+            app:layout_constraintStart_toStartOf="@+id/progressBarTimer"
+            app:layout_constraintTop_toTopOf="@+id/progressBarTimer" />
+
+        <TextView
+            android:id="@+id/timerLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="label"
+            android:textColor="@color/haven_purple"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarTimer"
+            app:layout_constraintEnd_toEndOf="@+id/progressBarTimer"
+            app:layout_constraintStart_toStartOf="@+id/progressBarTimer"
+            app:layout_constraintTop_toTopOf="@+id/progressBarTimer"
+            app:layout_constraintVertical_bias="0.35000002" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/pauseStartFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:clickable="true"
+            app:backgroundTint="@color/haven_purple"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/saveTimeButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/deleteTimeButton"
+            app:srcCompat="@drawable/ic_baseline_pause"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
