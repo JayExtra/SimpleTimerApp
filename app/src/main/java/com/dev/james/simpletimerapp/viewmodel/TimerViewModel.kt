@@ -6,18 +6,18 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import java.util.*
 
 class TimerViewModel : ViewModel() {
 
 
     //livedata for observing timer state
-    private var _hasTimerStarted : MutableLiveData<Boolean> = MutableLiveData()
-    val hasTimerStarted get() = _hasTimerStarted
+    private var _isTimerRunning : MutableLiveData<Boolean> = MutableLiveData()
+    val isTimerRunning get() = _isTimerRunning
 
     //livedata for observing paused timer state
     private var _isTimerPaused : MutableLiveData<Boolean> = MutableLiveData()
     val isTimerPaused get() = _isTimerPaused
+
 
 
 
@@ -30,7 +30,8 @@ class TimerViewModel : ViewModel() {
     //start timer
     fun triggerStart() = viewModelScope.launch {
         stateChannel.send(TimerState.Running(true))
-        hasTimerStarted.postValue(true)
+        _isTimerRunning.postValue(true)
+        _isTimerPaused.postValue(false)
     }
 
     //pause timer
@@ -42,7 +43,7 @@ class TimerViewModel : ViewModel() {
     //stop timer
     fun triggerStop() = viewModelScope.launch {
         stateChannel.send(TimerState.Stopped(true))
-        hasTimerStarted.postValue(false)
+        _isTimerRunning.postValue(false)
         _isTimerPaused.postValue(false)
     }
 

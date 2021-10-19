@@ -1,22 +1,23 @@
 package com.dev.james.simpletimerapp.features.ui.fragments
 
+import android.animation.Animator
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.view.animation.TranslateAnimation
 import android.widget.Toast
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.dev.james.simpletimerapp.R
 import com.dev.james.simpletimerapp.databinding.FragmentSetTimerBinding
 import com.dev.james.simpletimerapp.viewmodel.TimerViewModel
 import kotlinx.coroutines.flow.collectLatest
-import kotlin.math.min
 
 class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
 
@@ -24,8 +25,6 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
     private var time = ""
 
     private val timerViewModel : TimerViewModel by activityViewModels()
-
-    private var hasTimerBeenSet : Boolean? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,9 +40,12 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
             listOf(button0 , button1 , button2 , button3 , button4 , button5 ,button6,
             button7 , button8 , button9).forEach { button ->
                 button.setOnClickListener {
+                    button0.isClickable = true
                     addDigit(button.text as String)
                 }
             }
+
+            button0.isClickable = false
 
             backSpaceimage.setOnClickListener {
                 deleteDigit()
@@ -52,45 +54,51 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
             startTimerFab.setOnClickListener {
                 //findNavController().navigate(R.id.action_setTimerFragment_to_showTimerFragment)
                 timerViewModel.triggerStart()
-                hasTimerBeenSet = true
+                addTimerLayout.isInvisible = true
+                showTimerLayout.slideUp()
+
             }
             deleteTimeButton.setOnClickListener {
                 timerViewModel.triggerStop()
-                hasTimerBeenSet = false
+                addTimerLayout.slideUp()
+                showTimerLayout.isInvisible = true
             }
         }
     }
 
     private fun observeLiveData() {
-        timerViewModel.hasTimerStarted.observe(viewLifecycleOwner , { hasBeenStarted ->
+        timerViewModel.isTimerRunning.observe(viewLifecycleOwner , { hasBeenStarted ->
 
-            if (hasBeenStarted){
-                binding.apply {
-                    addTimerLayout.isInvisible = true
-                    showTimerLayout.isVisible = true
+                if (hasBeenStarted){
+                    binding.apply {
+                        showTimerLayout.isVisible = true
+                        addTimerLayout.isInvisible = true
+                        pauseStartFab.setOnClickListener {
+                            timerViewModel.triggerPause()
+                        }
+                    }
+                }else{
+                    binding.apply {
+                        addTimerLayout.isVisible = true
+                        showTimerLayout.isInvisible = true
+                    }
                 }
-            }else{
-                binding.apply {
-                    addTimerLayout.isVisible = true
-                    showTimerLayout.isInvisible = true
-                }
-            }
-
         })
 
         timerViewModel.isTimerPaused.observe(viewLifecycleOwner , { isPaused ->
-
-            if (isPaused){
-                binding.apply {
-                   startBlinking()
+                if (isPaused){
+                    binding.apply {
+                        startBlinking()
                         pauseStartFab.setImageResource(R.drawable.ic_baseline_play)
                         pauseStartFab.setOnClickListener {
                             timerViewModel.triggerStart()
                         }
+                    }
+                }else{
+                    stopBlinking()
+                    binding.pauseStartFab.setImageResource(R.drawable.ic_baseline_pause)
                 }
-            }else{
-                stopBlinking()
-            }
+
 
         })
     }
@@ -98,12 +106,18 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
 
     private fun updateTimeText() {
         val output = "000000$time"
-        val h = output.takeLast(6).take(2)
-        val m = output.takeLast(4).take(2)
-        val s = output.takeLast(2)
 
-        //Log.d("SetTimer", "updated text: $h $m $s ")
-        binding.timerTextView.text = "${h}h ${m}m ${s}s"
+            val h = output.takeLast(6).take(2)
+            val m = output.takeLast(4).take(2)
+            val s = output.takeLast(2)
+            //Log.d("SetTimer", "updated text: $h $m $s ")
+
+        val firstValue = output.takeLast(6).take(6).takeLast(1)
+        Log.i("FirstValue", "updateTimeText: first value is : $firstValue ")
+            binding.timerTextView.text = "${h}h ${m}m ${s}s"
+            binding.timerText.text = "${h}h ${m}m ${s}s"
+
+
 
     }
 
@@ -127,6 +141,9 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
         if(time.isEmpty())
             binding.timerTextView.setTextColor(Color.GRAY)
 
+
+        binding.button0.isClickable = false
+
         updateTimeText()
     }
 
@@ -139,8 +156,7 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
                         stopBlinking()
                         binding.apply {
 
-                            showTimerLayout.isVisible = true
-                            addTimerLayout.isInvisible = true
+
                             pauseStartFab.setImageResource(R.drawable.ic_baseline_pause)
                             pauseStartFab.setOnClickListener {
                                 timerViewModel.triggerPause()
@@ -164,8 +180,6 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
                         Toast.makeText(requireContext(), "timer stopped.", Toast.LENGTH_SHORT).show()
                         binding.apply {
                             pauseStartFab.setImageResource(R.drawable.ic_baseline_play)
-                            addTimerLayout.isVisible = true
-                            showTimerLayout.isInvisible = true
                         }
 
                     }
@@ -195,6 +209,15 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
             binding.timerTextView.setTextColor(Color.GRAY)
 
         updateTimeText()
+    }
+
+    //layout animations
+    private fun View.slideUp(duration : Int = 300){
+        val animate = TranslateAnimation(0f , 0f ,this.height.toFloat() , 0f)
+        animate.duration = duration.toLong()
+        this.startAnimation(animate)
+        visibility = View.VISIBLE
+
     }
 
 }
