@@ -3,20 +3,26 @@ package com.dev.james.simpletimerapp.features.ui.fragments
 import android.animation.Animator
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.TranslateAnimation
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
 import com.dev.james.simpletimerapp.R
 import com.dev.james.simpletimerapp.databinding.FragmentSetTimerBinding
 import com.dev.james.simpletimerapp.viewmodel.TimerViewModel
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.flow.collectLatest
 
 class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
@@ -31,12 +37,23 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
         binding = FragmentSetTimerBinding.bind(view)
 
 
+        //on creation of the application we update the time text to its initial
+        //value without any time added in this case 00:00:00
         updateTimeText()
+
+        //we listen to the event channels for any one time events e.g to show toast that the
+        //timer has been started
         listenToChannels()
+
+        //we observe the various timer state livedata. We do this so that we can preserve
+        //the timer states even on configuration changes. In our case we use the bottom nav
+        //navigating between fragments make the fragments on the back stacks lose their state when destroyed and
+        //recreated.
         observeLiveData()
 
         binding.apply {
-           // addTimerLayout.isVisible = true
+
+            //these are the individual buttons for adding the time digits
             listOf(button0 , button1 , button2 , button3 , button4 , button5 ,button6,
             button7 , button8 , button9).forEach { button ->
                 button.setOnClickListener {
@@ -45,23 +62,42 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
                 }
             }
 
+
+            //on creation we prevent the button zero from being clickable to stop
+            //the addition of a zero as the first timer digit.
             button0.isClickable = false
 
             backSpaceimage.setOnClickListener {
+                //this will call the deleteDigit() function which will delete
+                //text one by one
                 deleteDigit()
             }
 
             startTimerFab.setOnClickListener {
-                //findNavController().navigate(R.id.action_setTimerFragment_to_showTimerFragment)
-                timerViewModel.triggerStart()
+                val output = "000000$time"
+                //when we trigger start timer we will pass the time string
+                //to the ViewModel where we will calculate the hours minutes and seconds
+                Log.i("SetTimer", "onViewCreated: time now $output ")
+                timerViewModel.triggerStart(output)
+
+
+                //on starting the timer trigger the layout animations
                 addTimerLayout.isInvisible = true
                 showTimerLayout.slideUp()
 
             }
             deleteTimeButton.setOnClickListener {
+                //trigger the timer reset and reset everything back to zero
+                //also including stoping the timer
                 timerViewModel.triggerStop()
+                //also do the layout animations
                 addTimerLayout.slideUp()
                 showTimerLayout.isInvisible = true
+            }
+
+            editLabelImage.setOnClickListener {
+                //show dialog
+                showDialog()
             }
         }
     }
@@ -69,6 +105,9 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
     private fun observeLiveData() {
         timerViewModel.isTimerRunning.observe(viewLifecycleOwner , { hasBeenStarted ->
 
+            //if timer has been started we will show the required layout. Then change the functionality
+            //of the pause and start button to pause the timer on click. If the timer is not running , we will show
+            //the required layouts.
                 if (hasBeenStarted){
                     binding.apply {
                         showTimerLayout.isVisible = true
@@ -83,15 +122,19 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
                         showTimerLayout.isInvisible = true
                     }
                 }
+
         })
 
+        //if the timer is paused , the timer text will show a blinking animation ,  then change the functionality
+        //of the pause and start button to play/resume the timer. Otherwise if not paused the timer will continue running
+        //and the blinking animation will stop.
         timerViewModel.isTimerPaused.observe(viewLifecycleOwner , { isPaused ->
                 if (isPaused){
                     binding.apply {
                         startBlinking()
                         pauseStartFab.setImageResource(R.drawable.ic_baseline_play)
                         pauseStartFab.setOnClickListener {
-                            timerViewModel.triggerStart()
+                            timerViewModel.triggerStart(time)
                         }
                     }
                 }else{
@@ -99,8 +142,17 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
                     binding.pauseStartFab.setImageResource(R.drawable.ic_baseline_pause)
                 }
 
+        })
+
+        //time calculated and received which will be passed to the timer service
+
+        timerViewModel.timeMillis.observe(viewLifecycleOwner , { timeMillis ->
+
+            Log.i("SetTimer", "received time in millis : $timeMillis")
 
         })
+
+
     }
 
 
@@ -147,7 +199,12 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
         updateTimeText()
     }
 
+
+
     private fun listenToChannels() {
+
+        //here we listen to all the one time events during running , pausing and stopping the timer. They
+        //are collected as flows.
         lifecycleScope.launchWhenStarted {
             timerViewModel.stateFlow.collectLatest { timerState ->
                 when(timerState){
@@ -169,7 +226,7 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
                         binding.apply {
                             pauseStartFab.setImageResource(R.drawable.ic_baseline_play)
                             pauseStartFab.setOnClickListener {
-                                timerViewModel.triggerStart()
+                                timerViewModel.triggerStart(time)
                             }
                         }
                     }
@@ -217,6 +274,37 @@ class SetTimerFragment : Fragment(R.layout.fragment_set_timer) {
         animate.duration = duration.toLong()
         this.startAnimation(animate)
         visibility = View.VISIBLE
+
+    }
+
+
+    //show dialog
+    private fun showDialog(){
+        val dialog = MaterialDialog(requireContext())
+            .noAutoDismiss()
+            .customView(R.layout.fragment_label_dialog)
+
+        //get label from
+        val labelTextField = dialog.findViewById<EditText>(R.id.label_text_input)
+        val labelEditTextLayout = dialog.findViewById<TextInputLayout>(R.id.textFieldLayout)
+        val saveBtn = dialog.findViewById<Button>(R.id.buttonSave)
+        val cancelBtn = dialog.findViewById<Button>(R.id.buttonCancel)
+        val label = labelTextField.text
+
+        saveBtn.setOnClickListener {
+
+            if (label.isEmpty()){
+                labelEditTextLayout.error = "label cannot be empty"
+            }
+            binding.timerLabel.text = label
+            dialog.dismiss()
+        }
+
+        cancelBtn.setOnClickListener {
+            dialog.cancel()
+        }
+
+        dialog.show()
 
     }
 

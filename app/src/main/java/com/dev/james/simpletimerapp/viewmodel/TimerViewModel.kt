@@ -18,6 +18,9 @@ class TimerViewModel : ViewModel() {
     private var _isTimerPaused : MutableLiveData<Boolean> = MutableLiveData()
     val isTimerPaused get() = _isTimerPaused
 
+    //livedata for time in milliseconds
+    private var _timeMillis : MutableLiveData<Int> = MutableLiveData()
+    val timeMillis get() = _timeMillis
 
 
 
@@ -28,10 +31,28 @@ class TimerViewModel : ViewModel() {
 
 
     //start timer
-    fun triggerStart() = viewModelScope.launch {
+    fun triggerStart(time : String) = viewModelScope.launch {
         stateChannel.send(TimerState.Running(true))
         _isTimerRunning.postValue(true)
         _isTimerPaused.postValue(false)
+
+        //calculate time given and pass it to the livedata
+        sendTime(time)
+
+    }
+
+    private fun sendTime(time: String) {
+        //get hours minutes and seconds
+        viewModelScope.launch {
+            val h = time.takeLast(6).take(2).toInt()
+            val m = time.takeLast(4).take(2).toInt()
+            val s = time.takeLast(2).toInt()
+
+            val timeMillis = (h * 3600000) + (m * 60000) + (s * 1000)
+
+            _timeMillis.postValue(timeMillis)
+        }
+
     }
 
     //pause timer

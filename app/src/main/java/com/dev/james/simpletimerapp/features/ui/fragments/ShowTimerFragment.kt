@@ -17,6 +17,8 @@ class ShowTimerFragment : Fragment(R.layout.fragment_show_timer) {
     private lateinit var  binding : FragmentShowTimerBinding
     private val timerViewModel : TimerViewModel by activityViewModels()
 
+    val time = ""
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentShowTimerBinding.bind(view)
@@ -51,7 +53,7 @@ class ShowTimerFragment : Fragment(R.layout.fragment_show_timer) {
                         binding.apply {
                             pauseStartFab.setImageResource(R.drawable.ic_baseline_play)
                             pauseStartFab.setOnClickListener {
-                                timerViewModel.triggerStart()
+                                timerViewModel.triggerStart(time)
                             }
                         }
                     }
